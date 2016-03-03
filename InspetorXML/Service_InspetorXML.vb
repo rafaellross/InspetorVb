@@ -3716,11 +3716,11 @@ End If
                     con.Dispose()
                 End Using
                 Using con As SqlConnection = GetConnectionERP()
-                    Try
-                        con.Open()
-                        Dim cmd As New SqlCommand
-                        cmd.Connection = con
-                        cmd.CommandText = "INSERT INTO SF1" & sCodTabEmitDest & "0 (F1_FILIAL,F1_DOC,F1_SERIE,F1_FORNECE,F1_LOJA,F1_COND,F1_DUPL,F1_EMISSAO,F1_EST,F1_FRETE,F1_DESPESA," +
+                Try
+                    con.Open()
+                    Dim cmd As New SqlCommand
+                    cmd.Connection = con
+                    cmd.CommandText = "INSERT INTO SF1" & sCodTabEmitDest & "0 (F1_FILIAL,F1_DOC,F1_SERIE,F1_FORNECE,F1_LOJA,F1_COND,F1_DUPL,F1_EMISSAO,F1_EST,F1_FRETE,F1_DESPESA," +
                             "F1_BASEICM,F1_VALICM,F1_BASEIPI,F1_VALIPI,F1_VALMERC,F1_VALBRUT,F1_TIPO,F1_DESCONT,F1_DTDIGIT,F1_ORIGLAN,F1_CONTSOC,F1_IRRF,F1_ESPECIE,F1_II,F1_BASIMP5," +
                             "F1_BASIMP6,F1_VALIMP5,F1_VALIMP6,F1_SEGURO,F1_MOEDA,F1_PREFIXO,F1_STATUS,F1_RECBMTO,F1_RECISS,R_E_C_N_O_,F1_CHVNFE) " +
                             "VALUES ('" & sFilialEmitDest & "','" & sNumeroMov & "','" & sSerie & "','" & sCodEmpEmit & "','" & sLojaEmit & "'," & sCondPagto & ",'" & sNumeroMov & "'," +
@@ -3728,9 +3728,9 @@ End If
                             "'" & IIf(dVipi > 0, Str(sValorBruto + dOutro + sValorFrete + dSeg), 0) & "','" & Str(dVipi) & "','" & Str(dvProduto) & "','" & Str(sValorBruto) & "','N','" & Str(dDesc) & "','" & Format(Date.Now, "yyyyMMdd") & "','PX'," +
                             "0,0,'" & sEspNf & "',0,'" & Str(dBCCofins) & "','" & Str(dBCPis) & "','" & Str(Round(dBCCofins * (dAliqCofins / 100), 2)) & "','" & Str(Round(dBCPis * (dAliqPis / 100), 2)) & "'," +
                             "'" & Str(dSeg) & "',1,1,'','" & Format(Date.Now, "yyyyMMdd") & "','2','" & iRecnoSF1 & "','" & sChaveNfe & "')"
-                        cmd.ExecuteReader()
-                    Catch ex As Exception
-                        Using conError As SqlConnection = GetConnectionXML()
+                    cmd.ExecuteReader()
+                Catch ex As Exception
+                    Using conError As SqlConnection = GetConnectionXML()
                             conError.Open()
                             Dim cmd As New SqlCommand
                             cmd.Connection = conError
